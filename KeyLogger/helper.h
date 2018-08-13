@@ -83,6 +83,4 @@ namespace Helper
 	}
 }
 
-
-
 #endif // HELPER_H

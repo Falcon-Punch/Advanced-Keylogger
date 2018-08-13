@@ -151,6 +151,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="base64.h" />
     <ClInclude Include="helper.h" />
     <ClInclude Include="keyConstants.h" />
   </ItemGroup>
