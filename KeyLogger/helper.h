@@ -10,7 +10,7 @@ namespace Helper
 {
 	template <class T>
 
-	std::string ToString(const T &);
+	std::string toString(const T &);
 
 	struct DateTime
 	{
@@ -43,20 +43,23 @@ namespace Helper
 			return DateTime();
 		}
 
+		// Gets Data in string format
 		std::string getDateString() const
 		{
-			return std::string(day < 10 ? "0" : "") + ToString(day) +
-				   std::string(month < 10 ? ".0" : ".") + ToString(month) + "." +
-				   ToString(year);
+			return std::string(day < 10 ? "0" : "") + toString(day) +
+				   std::string(month < 10 ? ".0" : ".") + toString(month) + "." +
+				   toString(year);
 		}
 
+		// Gets Time in string format
 		std::string getTimeString(const std::string &sep = ":") const
 		{
-			return std::string(hour < 10 ? "0" : "") + ToString(hour) + sep +
-				   std::string(minute < 10 ? "0" : "") + ToString(minute) + sep +
-				   std::string(second < 10 ? sep : "") + ToString(second);
+			return std::string(hour < 10 ? "0" : "") + toString(hour) + sep +
+				   std::string(minute < 10 ? "0" : "") + toString(minute) + sep +
+				   std::string(second < 10 ? sep : "") + toString(second);
 		}
 
+		// Gets both Data and Time in string format
 		std::string getDateTimeString(const std::string &sep = ":") const
 		{
 			return getDateString() + " " + getTimeString(sep);
@@ -65,14 +68,16 @@ namespace Helper
 
 	template <class T>
 
-	std::string ToString(const T &eStr)
+	// Converts data to a string type
+	std::string toString(const T &data)
 	{
 		std::ostringstream outStr;
-		outStr << eStr;
+		outStr << data;
 
 		return outStr.str();
 	}
 
+	// Writes data to text file
 	void writeLogFile(const std::string &logStr)
 	{
 		std::ofstream outFile("LogFile.txt", std::ios::app);

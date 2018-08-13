@@ -1,4 +1,4 @@
-/*  Base64 Algorithm 
+/*	Base64 Algorithm 
 
 	Base64 Chart:
 
@@ -59,10 +59,6 @@
 	   n % 3 = 1(byte) --> then we add "==" at the end for padding
 	   n % 3 = 2(byte) --> then we add "=" at the end for padding
 	   
-
-
-
-
  */
 #ifndef BASE64_H
 #define BASE64_H
@@ -74,18 +70,25 @@ namespace Base64
 {
 	std::string base64_encode(const std::string &);
 
-	const std::string &saltHash1 = "30//99:/WW";
-	const std::string &saltHash2 = "!falcon!!kong";
-	const std::string &saltHash3 = "_SOUL=*DARK>>";
+	// String of all chars in the Base64 list.
+	const std::string &BASE64_CODES =
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
+	// Using three Salts - which are strings of random data
+	// used to hash our key strokes. 
+	const std::string &saltStr1 = "30//99:/WW";
+	const std::string &saltStr2 = "!falcon!!kong";
+	const std::string &saltStr3 = "_SOUL=*DARK>>";
+
+	// Takes key stroke and encrypts the data with given Salts.
 	std::string encrypt64(std::string inputStr)
 	{
-		inputStr = saltHash1 + inputStr + saltHash2 + saltHash3;
+		inputStr = saltStr1 + inputStr + saltStr2 + saltStr3;
 		inputStr = base64_encode(inputStr);
-		inputStr.insert(7, saltHash3);
-		inputStr += saltHash1;
+		inputStr.insert(7, saltStr3);
+		inputStr += saltStr1;
 		inputStr = base64_encode(inputStr);
-		inputStr = saltHash2 + saltHash3 + saltHash1;
+		inputStr = saltStr2 + saltStr3 + saltStr1;
 		inputStr = base64_encode(inputStr);
 		inputStr.insert(1, "L");
 		inputStr.insert(7, "M");
@@ -93,9 +96,7 @@ namespace Base64
 		return inputStr;
 	}
 
-	const std::string &BASE64_CODES = 
-		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
+	// Takes a string and encodes it with the Base64 method
 	std::string base64_encode(const std::string &str)
 	{
 		std::string outStr;
@@ -120,7 +121,6 @@ namespace Base64
 			outStr.push_back(BASE64_CODES[((value << 8) >> (bits + 8)) & b63]);
 		}
 			
-
 		while (outStr.size() % 4)
 		{
 			outStr.push_back('=');

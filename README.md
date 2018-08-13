@@ -7,8 +7,75 @@ A personal project where I attempt to create an advanced Keylogger in C++ (In Pr
 
 ### Goals for project:
 
-* Learn about ethical hacking and computer security
+* Learn about ethical hacking, computer security and cryptography
 * Create a program that is undetectable by anti-virus software
 * Program will encrypt all key logs
 * Key logs will be written to a file and sent to my email
 * Method of decrypting file sent to my email
+
+### Encoding via Base64:
+
+~~~
+/*	Base64 Algorithm 
+
+	Base64 Chart:
+
+	 ------------------------------------------------------
+	|  A  |  B  |  C  |  D  | ... |  8  |  9  |  +  |  /  |
+	 ------------------------------------------------------
+	|  0  |  1  |  2  |  3  | ... | 60  | 61  | 62  | 63  |
+	 ------------------------------------------------------
+
+	 Chart includes (64 characters): 
+	 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+
+	 For an example of how this encoding process works we will use the 
+	 word "Code" which is "Q29kZQ==" in its Base64 encoded form.
+
+	 1) When you take the letters of "Code" and translate each one into
+	 ASCII values we get:
+		C = 067
+		o = 111
+		d = 100
+		e = 101
+
+	2) Translated into 8-bit binary these ASCII values are:
+		067 = 01000011
+		111 = 01101111
+		100 = 01100100
+		101 = 01100101
+
+	3) The binary values grouped together (8x4 = 32 bits):
+		01000011 + 01101111 + 01100100 + 01100101 =
+		01000011011011110110010001100101
+
+	4) Then this 32-bit number is grouped into groups of 6 
+	(because 2^6 = 64 and this allows us to group them into our chart)
+
+		 -----------------------------------------
+		|010000|110110|111101|100100|011001|010000|  <-- add 4 zeros to last group
+		 -----------------------------------------
+		|			Convert to Decimal			  |	
+		 -----------------------------------------
+		|  16  |  54  |  61  |  36  |  25  |  16  |
+		 -----------------------------------------
+		|	  Convert Decimal to Base64 values	  |
+		 -----------------------------------------
+		|  Q   |  2   |  9   |  k   |  Z   |  Q   |
+		 -----------------------------------------
+
+	5) This gives us "Q29kZQ", but because we had a group of less than
+	   6 bits, we have to add "padding" to this value, which is a "="
+	   symbol. If our number (32) % 3 is equal to 1 byte, we add two
+	   equal signs to our value as padding, resulting in in the final 
+	   encoded value of: "Q29kZQ=="
+
+	   If the bit number divided by 3 resulted in a remainder of 2 bytes
+	   then we would only add one equal sign for padding. Here are the 
+	   respective formulas:
+	   
+	   n % 3 = 1(byte) --> then we add "==" at the end for padding
+	   n % 3 = 2(byte) --> then we add "=" at the end for padding
+	   
+ */
+ ~~~
