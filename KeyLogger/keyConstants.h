@@ -21,6 +21,12 @@ class Keys
 
 std::map<int, KeyPair> Keys::KEYS = 
 {
+	/*
+	* List of all key strokes from modern keyboards
+	* including mouse buttons.
+	*
+	* Note: This list will work with any language.
+	*/
 	{ 0xC1,{ "[VK_ABNT_C1]", "[Abnt C1]" } },
 	{ 0xC2,{ "[VK_ABNT_C2]", "[Abnt C2]" } },
 	{ 0x6B,{ "[VK_ADD]", "[Numpad +]" } },
