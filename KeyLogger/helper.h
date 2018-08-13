@@ -4,6 +4,7 @@
 #include <ctime>
 #include <string>
 #include <sstream>
+#include <fstream>
 
 namespace Helper
 {
@@ -61,6 +62,25 @@ namespace Helper
 			return getDateString() + " " + getTimeString(sep);
 		}
 	};
+
+	template <class T>
+
+	std::string ToString(const T &eStr)
+	{
+		std::ostringstream outStr;
+		outStr << eStr;
+
+		return outStr.str();
+	}
+
+	void writeLogFile(const std::string &logStr)
+	{
+		std::ofstream outFile("LogFile.txt", std::ios::app);
+		outFile << "[" << Helper::DateTime().getDateTimeString() << "]" <<
+			"\n" << logStr << std::endl << "\n";
+
+		outFile.close();
+	}
 }
 
 
