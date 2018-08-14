@@ -57,5 +57,19 @@ Function Send-EMail
     {
         exit 3;
     }
+}
 
+try
+{
+    Send-EMail
+        -attachment $Att
+        -To "Address of the recipient"
+        -Body $Body
+        -Subject $Subj
+        -password "Password of email"
+        -From "Address of the Sender"
+}
+catch
+{
+    exit 4;
 }
