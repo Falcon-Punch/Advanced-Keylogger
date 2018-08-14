@@ -15,8 +15,8 @@ class KeyPair
 
 class Keys
 {
-	public:
-		static std::map<int, KeyPair> KEYS;
+public:
+	static std::map<int, KeyPair> KEYS;
 };
 
 std::map<int, KeyPair> Keys::KEYS = 

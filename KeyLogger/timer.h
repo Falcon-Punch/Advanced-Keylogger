@@ -25,7 +25,7 @@ class Timer
 
 	void threadFunc()
 	{
-		if (callNumber == Infinite)
+		if (callNumber == infinite)
 		{
 			while (alive)
 			{
@@ -40,5 +40,84 @@ class Timer
 			}
 		}
 	}
-}
+
+public:
+
+	static const long infinite = -1L;
+
+	Timer() {}
+
+	Timer(const std::function<void(void)> &f) : funct(f) {}
+
+	Timer(const std::function<void(void)> &f,
+		const unsigned long &i,
+		const long repeat = Timer::infinite) : funct(f),
+		interval(std::chrono::milliseconds(i)),
+		callNumber(repeat) {}
+
+	void start(bool Async = true)
+	{
+		if (isAlive())
+		{
+			return;
+		}
+			
+		alive = true;
+		repeatCount = callNumber;
+
+		if (Async)
+		{
+			Thread = std::thread(threadFunc, this);
+		}
+		else
+		{
+			this->threadFunc();
+		}
+	}
+
+	void stop()
+	{
+		alive = false;
+		Thread.join();
+	}
+
+	void setFunction(const std::function<void(void)> &f)
+	{
+		funct = f;
+	}
+
+	bool isAlive() const { return alive; }
+
+	void repeatCount(const long r)
+	{
+		if (alive)
+		{
+			return;
+		}
+
+		callNumber = r;
+	}
+
+	long getLeftCount() const { return repeatCount; }
+
+	long repeatCount() const { return callNumber; }
+
+	void setInterval(const unsigned long &i)
+	{
+		if (alive)
+		{
+			return;
+		}
+
+		interval = std::chrono::milliseconds(i);
+	}
+
+	unsigned long intervalCount() const { return interval.count(); }
+
+	const std::function<void(void)> &Function() const
+	{
+		return funct;
+	}
+};
+
 #endif // _TIMER_H_
