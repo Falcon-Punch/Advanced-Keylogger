@@ -8,10 +8,11 @@ A personal project where I attempt to create an advanced Keylogger in C++ (In Pr
 ### Goals for project:
 
 * Learn about ethical hacking, computer security and cryptography
-* Create a program that is undetectable by anti-virus software
-* Program will encrypt all key logs
-* Key logs will be written to a file and sent to my email
-* Method of decrypting file sent to my email
+* Find a way to implement threading (generally for more practice)
+* Aim to create a program that is undetectable by anti-virus software
+* Implement encryption to all key logs
+* Encrypted key logs will be written to a file and sent to user's email
+* Include method of decrypting file sent to user's email
 
 ### Encoding via Base64:
 
