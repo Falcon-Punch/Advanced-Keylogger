@@ -1,5 +1,5 @@
-#ifndef HELPER_H
-#define HELPER_H
+#ifndef _HELPER_H_
+#define _HELPER_H_
 
 #include <ctime>
 #include <string>
@@ -88,4 +88,4 @@ namespace Helper
 	}
 }
 
-#endif // HELPER_H
+#endif // _HELPER_H_

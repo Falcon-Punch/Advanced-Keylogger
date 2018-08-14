@@ -52,30 +52,30 @@ A personal project where I attempt to create an advanced Keylogger in C++ (In Pr
 	4) Then this 32-bit number is grouped into groups of 6 
 	(because 2^6 = 64 and this allows us to group them into our chart)
 
-		 -----------------------------------------
+		-------------------------------------------
 		|010000|110110|111101|100100|011001|010000|  <-- add 4 zeros to last group
-		 -----------------------------------------
-		|			Convert to Decimal			  |	
-		 -----------------------------------------
+		-------------------------------------------
+		|            Convert to Decimal           |	
+		-------------------------------------------
 		|  16  |  54  |  61  |  36  |  25  |  16  |
-		 -----------------------------------------
-		|	  Convert Decimal to Base64 values	  |
-		 -----------------------------------------
+		-------------------------------------------
+		|     Convert Decimal to Base64 values    |
+		-------------------------------------------
 		|  Q   |  2   |  9   |  k   |  Z   |  Q   |
-		 -----------------------------------------
+		-------------------------------------------
 
 	5) This gives us "Q29kZQ", but because we had a group of less than
 	   6 bits, we have to add "padding" to this value, which is a "="
-	   symbol. If our number (32) % 3 is equal to 1 byte, we add two
-	   equal signs to our value as padding, resulting in in the final 
-	   encoded value of: "Q29kZQ=="
+	   symbol in Base64. If our number modulus 3 (32 % 3 = 2) is equal 
+	   to 2, we add two equal signs to our value as padding, resulting 
+	   in the final encoded value of: "Q29kZQ=="
 
-	   If the bit number divided by 3 resulted in a remainder of 2 bytes
+	   If the bit number divided by 3 resulted in a remainder of 1
 	   then we would only add one equal sign for padding. Here are the 
 	   respective formulas:
 	   
-	   n % 3 = 1(byte) --> then we add "==" at the end for padding
-	   n % 3 = 2(byte) --> then we add "=" at the end for padding
+	   n % 3 = 1(bit) --> then we add "=" at the end for padding
+	   n % 3 = 2(bits) --> then we add "==" at the end for padding
 	   
  */
  ~~~

@@ -34,34 +34,34 @@
 	4) Then this 32-bit number is grouped into groups of 6 
 	(because 2^6 = 64 and this allows us to group them into our chart)
 
-		 -----------------------------------------
+		-------------------------------------------
 		|010000|110110|111101|100100|011001|010000|  <-- add 4 zeros to last group
-		 -----------------------------------------
-		|			Convert to Decimal			  |	
-		 -----------------------------------------
+		-------------------------------------------
+		|            Convert to Decimal           |	
+		-------------------------------------------
 		|  16  |  54  |  61  |  36  |  25  |  16  |
-		 -----------------------------------------
-		|	  Convert Decimal to Base64 values	  |
-		 -----------------------------------------
+		-------------------------------------------
+		|     Convert Decimal to Base64 values    |
+		-------------------------------------------
 		|  Q   |  2   |  9   |  k   |  Z   |  Q   |
-		 -----------------------------------------
+		-------------------------------------------
 
 	5) This gives us "Q29kZQ", but because we had a group of less than
 	   6 bits, we have to add "padding" to this value, which is a "="
-	   symbol. If our number (32) % 3 is equal to 1 byte, we add two
-	   equal signs to our value as padding, resulting in in the final 
-	   encoded value of: "Q29kZQ=="
+	   symbol in Base64. If our number modulus 3 (32 % 3 = 2) is equal 
+	   to 2, we add two equal signs to our value as padding, resulting 
+	   in the final encoded value of: "Q29kZQ=="
 
-	   If the bit number divided by 3 resulted in a remainder of 2 bytes
+	   If the bit number divided by 3 resulted in a remainder of 1
 	   then we would only add one equal sign for padding. Here are the 
 	   respective formulas:
 	   
-	   n % 3 = 1(byte) --> then we add "==" at the end for padding
-	   n % 3 = 2(byte) --> then we add "=" at the end for padding
+	   n % 3 = 1(bit) --> then we add "=" at the end for padding
+	   n % 3 = 2(bits) --> then we add "==" at the end for padding
 	   
  */
-#ifndef BASE64_H
-#define BASE64_H
+#ifndef _BASE64_H_
+#define _BASE64_H_
 
 #include <vector>
 #include <string>
@@ -78,20 +78,24 @@ namespace Base64
 	// used to hash our key strokes. 
 	const std::string &saltStr1 = "30//99:/WW";
 	const std::string &saltStr2 = "!falcon!!kong";
-	const std::string &saltStr3 = "_SOUL=*DARK>>";
+	const std::string &saltStr3 = "_SOUL=*DARK::";
 
 	// Takes key stroke and encrypts the data with given Salts.
 	std::string encrypt64(std::string inputStr)
 	{
-		inputStr = saltStr1 + inputStr + saltStr2 + saltStr3;
+		// Take Salts and scramble with string...
+		// This process can be done randomly, but the more complex
+		// the process becomes, the more difficult it will be to decrypt
+		inputStr = inputStr + saltStr1 + saltStr2 + saltStr3;
 		inputStr = base64_encode(inputStr);
-		inputStr.insert(7, saltStr3);
-		inputStr += saltStr1;
-		inputStr = base64_encode(inputStr);
+		inputStr.insert(3, saltStr3);
+		inputStr += saltStr3;
 		inputStr = saltStr2 + saltStr3 + saltStr1;
 		inputStr = base64_encode(inputStr);
-		inputStr.insert(1, "L");
-		inputStr.insert(7, "M");
+		inputStr += saltStr1;
+		inputStr = base64_encode(inputStr);
+		inputStr.insert(9, "A");
+		inputStr.insert(5, "J");
 
 		return inputStr;
 	}
@@ -104,9 +108,9 @@ namespace Base64
 		int bits = -6;
 		const unsigned int b63 = 0x3F;
 
-		for (const auto &charSign : str)
+		for (const auto &charHolder : str)
 		{
-			value = (value << 8) + charSign;
+			value = (value << 8) + charHolder;
 			bits += 8;
 
 			while (bits >= 0)
@@ -131,4 +135,4 @@ namespace Base64
 
 }
 
-#endif // BASE64_H
+#endif // _BASE64_H_
