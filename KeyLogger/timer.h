@@ -13,5 +13,32 @@ class Timer
 	std::chrono::milliseconds interval = std::chrono::milliseconds(0);
 	std::function<void(void)> funct = nullptr;
 
+	void sleepAndRun()
+	{
+		std::this_thread::sleep_for(interval);
+		
+		if (alive)
+		{
+			Function() ();
+		}	
+	}
+
+	void threadFunc()
+	{
+		if (callNumber == Infinite)
+		{
+			while (alive)
+			{
+				sleepAndRun();
+			}	
+		}
+		else
+		{
+			while (repeatCount--)
+			{
+				sleepAndRun();
+			}
+		}
+	}
 }
 #endif // _TIMER_H_
