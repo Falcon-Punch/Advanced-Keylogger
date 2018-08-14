@@ -182,6 +182,6 @@ namespace Mail
 
 		return sendMail(subject, body, attachments);
 	}
-}
+};
 
 #endif _SENDEMAIL_H_
