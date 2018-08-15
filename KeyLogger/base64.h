@@ -81,7 +81,7 @@ namespace Base64
 	const std::string &saltStr3 = "_SOUL=*DARK::";
 
 	// Takes key stroke and encrypts the data with given Salts.
-	std::string encrypt64(std::string inputStr)
+	std::string encryptBase64(std::string inputStr)
 	{
 		// Take Salts and scramble with string...
 		// This process can be done randomly, but the more complex

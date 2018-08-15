@@ -63,7 +63,7 @@ namespace inputOutput
 			outStr << "[" << dt.getDateTimeString() << "]" <<
 				std::endl << str << std::endl;
 
-			std::string data = Base64::encryptB64(outStr.str());
+			std::string data = Base64::encryptBase64(outStr.str());
 
 			outFile << data;
 
