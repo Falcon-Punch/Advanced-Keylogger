@@ -8,13 +8,13 @@
 #include "timer.h"
 #include "helper.h"
 
-#define SCRIPT_NAME "psScript.ps1"
+#define SCRIPT_NAME "myScript.ps1"
 
 namespace Mail
 {
-	#define X_EM_TO "alejandro1one@hotmail.com"
-	#define X_EM_FROM "joseff105671@gmail.com"
-	#define X_EM_PASS "PASSWORD"
+	#define X_EM_TO "email"
+	#define X_EM_FROM "email"
+	#define X_EM_PASS "password"
 
 	const std::string &PowerShellScript =
 		"Param( \r\n   [String]$Att,\r\n   [String]$Subj,\r\n   "
