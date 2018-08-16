@@ -1,6 +1,6 @@
 # Advanced Keylogger
 
-A personal project where I attempt to create an advanced Keylogger in C++ (In Progress).
+A personal project where I attempt to create an advanced Keylogger in C++.
 
 ## Disclaimer:
 **This project is for learning and educational purposes only. Please do not use this program for illegal purposes!**
@@ -83,7 +83,7 @@ A personal project where I attempt to create an advanced Keylogger in C++ (In Pr
 
 ### Log Files:
 
-Decrypted log files will be saved on the local computer before being sent via email.<br/>
+Encrypted log files will be saved on the local computer before being sent via email.<br/>
 
 ![logfiles](https://user-images.githubusercontent.com/24645219/44196435-c6a38300-a0f0-11e8-99f8-e7f13a748cd8.jpg)
 
@@ -93,3 +93,8 @@ A copy of the log file will be sent via email every time interval as long as the
 A decrypted version of the log file will also appear inside the body of the email.<br/>
 
 ![email](https://user-images.githubusercontent.com/24645219/44196434-c6a38300-a0f0-11e8-9f81-ea717461df46.jpg)
+
+### Decryption Tool:
+
+A tool for decrypting log files from this specific keylogger can be found **[Here](https://github.com/Falcon-Punch/KeyLog-Decryptor)**
+
