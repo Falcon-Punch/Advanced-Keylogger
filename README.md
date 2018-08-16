@@ -80,3 +80,16 @@ A personal project where I attempt to create an advanced Keylogger in C++ (In Pr
 	   
  */
  ~~~
+
+### Log Files:
+
+Decrypted log files will be saved on the local computer before being sent via email.<br/>
+
+![logfiles](https://user-images.githubusercontent.com/24645219/44196435-c6a38300-a0f0-11e8-99f8-e7f13a748cd8.jpg)
+
+### Emailed Log Files:
+
+A copy of the log file will be sent via email every time interval as long as the program is running.<br/>
+A decrypted version of the log file will also appear inside the body of the email.<br/>
+
+![email](https://user-images.githubusercontent.com/24645219/44196434-c6a38300-a0f0-11e8-9f81-ea717461df46.jpg)
