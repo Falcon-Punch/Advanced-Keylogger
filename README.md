@@ -96,5 +96,7 @@ A decrypted version of the log file will also appear inside the body of the emai
 
 ### Decryption Tool:
 
-A tool for decrypting log files from this specific keylogger can be found **[Here](https://github.com/Falcon-Punch/KeyLog-Decryptor)**
+The file will be decrypted inside the email, but if the user wishes to decrypt the files on their
+local machine, I have created a separate tool for decryption for this specific keylogger 
+which can be found **[Here](https://github.com/Falcon-Punch/KeyLog-Decryptor)**.
 
